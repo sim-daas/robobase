@@ -34,8 +34,7 @@ RUN apt-get update && apt-get install -y \
 RUN gem install tmuxinator
 
 # Upgrade pip and install common AI libraries
-RUN python3 -m pip install --upgrade pip && \
-    pip3 install ultralytics --break-system-packages
+RUN python3 -m pip install --upgrade pip
 
 # Create ROS 2 workspace and clone robobase package
 RUN mkdir -p /root/robows/src && \
