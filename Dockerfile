@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-nav2-lifecycle-manager \
     ros-jazzy-nav2-controller \
     ros-jazzy-nav2-planner \
-    ros-jazzy-nav2-recoveries \
     ros-jazzy-nav2-behavior-tree \
     ros-jazzy-nav2-costmap-2d \
     ros-jazzy-nav2-msgs \
@@ -32,9 +31,6 @@ RUN apt-get update && apt-get install -y \
 
 # Install tmuxinator gem
 RUN gem install tmuxinator
-
-# Upgrade pip and install common AI libraries
-RUN python3 -m pip install --upgrade pip
 
 # Create ROS 2 workspace and clone robobase package
 RUN mkdir -p /root/robows/src && \
