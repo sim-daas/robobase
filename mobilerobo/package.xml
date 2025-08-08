@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>A base package for mobilerobots</description>
   <maintainer email="aitechmanml@gmail.com">root</maintainer>
-  <license>MIT License</license>NCE
+  <license>MIT License</license>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
