@@ -1,13 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!-- Camera pose properties (set these before including this file) -->
-  <xacro:property name="camera_xyz" default="0 0 1"/>
-  <xacro:property name="camera_rpy" default="0 0 0"/>
-
   <!-- Camera joint (fixed to parent, e.g., base_link) -->
   <joint name="camera_joint" type="fixed">
-    <parent link="base_link"/>
+    <parent link="${camera_parent_link}"/>
     <child link="camera_link"/>
     <origin xyz="${camera_xyz}" rpy="${camera_rpy}"/>
   </joint>
