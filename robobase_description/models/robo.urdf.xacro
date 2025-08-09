@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robobase">
+
+<xacro:include filename="$(find robobase_description)/models/bases/rectangular-base.urdf.xacro"/>
+
+</robot>
+
+
+
+
+
