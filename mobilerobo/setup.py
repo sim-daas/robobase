@@ -12,6 +12,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/' + f for f in __import__('os').listdir('launch')]),
         ('share/' + package_name + '/config', ['config/' + f for f in __import__('os').listdir('config')]),
+        ('share/' + package_name + '/worlds', ['worlds/' + f for f in __import__('os').listdir('worlds')]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

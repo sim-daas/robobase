@@ -15,9 +15,11 @@
 
         <!-- Black box -->
         <model name="black_box">
-            <pose>$(awk -v min=-3 -v max=3 'BEGIN{srand(); printf "%.2f %.2f 0.3 0 0 0", min+rand()*(max-min), min+rand()*(max-min)}')</pose>
+            <!-- Replaced random command with fixed pose -->
+            <pose>-1.0 -1.0 0.3 0 0 0</pose>
             <static>true</static>
             <link name="link">
+                <!-- ...existing code... -->
                 <collision name="collision">
                     <geometry>
                         <box>
@@ -41,9 +43,11 @@
 
         <!-- Gray box -->
         <model name="gray_box">
-            <pose>$(awk -v min=-3 -v max=3 'BEGIN{srand(); printf "%.2f %.2f 0.3 0 0 0", min+rand()*(max-min), min+rand()*(max-min)}')</pose>
+            <!-- Replaced random command with fixed pose -->
+            <pose>1.0 1.0 0.3 0 0 0</pose>
             <static>true</static>
             <link name="link">
+                <!-- ...existing code... -->
                 <collision name="collision">
                     <geometry>
                         <box>
