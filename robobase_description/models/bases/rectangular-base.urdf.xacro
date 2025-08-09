@@ -22,7 +22,9 @@
 
 <!-- Compute base mass -->
 <link name="base_link">
-    <xacro:inertial_box x="${base_length}" y="${base_width}" z="${base_height}"/>
+    <xacro:inertial_box x="${base_length}" y="${base_width}" z="${base_height}">
+        <origin xyz="0 0 ${base_height / 2}" rpy="0 0 0"/>
+    </xacro:inertial_box>
     <visual>
         <origin xyz="0 0 ${base_height / 2}" rpy="0 0 0"/>
         <geometry>
@@ -50,7 +52,9 @@
 
 <!-- Compute wheel mass -->
 <link name="lfwheel_link">
-    <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+    <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}">
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
     <visual>
         <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
         <geometry>

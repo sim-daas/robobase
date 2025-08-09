@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-nav2-msgs \
     ros-jazzy-nav2-util \
     ros-jazzy-nav2-rviz-plugins \
+    ros-jazzy-joint-state-publisher-gui \
     && rm -rf /var/lib/apt/lists/*
 
 # Install tmuxinator gem

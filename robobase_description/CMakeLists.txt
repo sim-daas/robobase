@@ -9,6 +9,14 @@ find_package(xacro REQUIRED)
 install(
   DIRECTORY models/
   DESTINATION share/${PROJECT_NAME}/models
+  FILES_MATCHING PATTERN "*.xacro" PATTERN "*.urdf"
+)
+
+# Explicitly install all xacro files in models/bases
+install(
+  DIRECTORY models/bases/
+  DESTINATION share/${PROJECT_NAME}/models/bases
+  FILES_MATCHING PATTERN "*.xacro" PATTERN "*.urdf"
 )
 
 if(BUILD_TESTING)
