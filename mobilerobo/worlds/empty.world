@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+    <world name="empty_world">
+        <!-- Sun -->
+        <include>
+            <pose>0 0 0 0 0 0</pose>
+            <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+        </include>
+
+        <!-- Ground plane -->
+        <include>
+            <pose>0 0 0 0 0 0</pose>
+            <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground%20Plane</uri>
+        </include>
+
+        <!-- Black box -->
+        <model name="black_box">
+            <pose>$(awk -v min=-3 -v max=3 'BEGIN{srand(); printf "%.2f %.2f 0.3 0 0 0", min+rand()*(max-min), min+rand()*(max-min)}')</pose>
+            <static>true</static>
+            <link name="link">
+                <collision name="collision">
+                    <geometry>
+                        <box>
+                            <size>0.6 0.6 0.6</size>
+                        </box>
+                    </geometry>
+                </collision>
+                <visual name="visual">
+                    <geometry>
+                        <box>
+                            <size>0.6 0.6 0.6</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0 0 0 1</ambient>
+                        <diffuse>0 0 0 1</diffuse>
+                    </material>
+                </visual>
+            </link>
+        </model>
+
+        <!-- Gray box -->
+        <model name="gray_box">
+            <pose>$(awk -v min=-3 -v max=3 'BEGIN{srand(); printf "%.2f %.2f 0.3 0 0 0", min+rand()*(max-min), min+rand()*(max-min)}')</pose>
+            <static>true</static>
+            <link name="link">
+                <collision name="collision">
+                    <geometry>
+                        <box>
+                            <size>0.6 0.6 0.6</size>
+                        </box>
+                    </geometry>
+                </collision>
+                <visual name="visual">
+                    <geometry>
+                        <box>
+                            <size>0.6 0.6 0.6</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.5 0.5 0.5 1</ambient>
+                        <diffuse>0.5 0.5 0.5 1</diffuse>
+                    </material>
+                </visual>
+            </link>
+        </model>
+    </world>
+</sdf>
