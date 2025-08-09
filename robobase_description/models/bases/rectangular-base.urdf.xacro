@@ -9,30 +9,20 @@
 <xacro:property name="wheel_radius" default="0.2"/>
 <xacro:property name="wheel_width" default="0.1"/>
 
-
-
 <link name="base_footprint">
     <origin xyz="0 0 0" rpy="0 0 0"/>
 </link>
 
-
 <!-- Base Link -->
-
 <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
 </joint>
 
+<!-- Compute base mass -->
 <link name="base_link">
-    <xacro:cuboid_inertia x="${base_length}" y="${base_width}" z="${base_height}" prefix="base"/>
-    <inertial>
-        <mass value="${base_mass}"/>
-        <inertia
-            ixx="${base_ixx}" ixy="0" ixz="0"
-            iyy="${base_iyy}" iyz="0"
-            izz="${base_izz}"/>
-    </inertial>
+    <xacro:inertial_box x="${base_length}" y="${base_width}" z="${base_height}"/>
     <visual>
         <origin xyz="0 0 ${base_height / 2}" rpy="0 0 0"/>
         <geometry>
@@ -50,9 +40,7 @@
     </collision>
 </link>
 
-
 <!-- Lfwheel Link -->
-
 <joint name="lfwheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="lfwheel_link"/>
@@ -60,15 +48,9 @@
     <axis xyz="0 0 1"/>
 </joint>
 
+<!-- Compute wheel mass -->
 <link name="lfwheel_link">
-    <xacro:cylinder_inertia radius="${wheel_radius}" length="${wheel_width}" prefix="lfwheel"/>
-    <inertial>
-        <mass value="${wheel_mass}"/>
-        <inertia
-            ixx="${lfwheel_ixx}" ixy="0" ixz="0"
-            iyy="${lfwheel_iyy}" iyz="0"
-            izz="${lfwheel_izz}"/>
-    </inertial>
+    <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}"/>
     <visual>
         <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
         <geometry>
@@ -96,5 +78,4 @@
 
 
 
-
-<robot name="mobile_base">
+</robot>
