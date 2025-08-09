@@ -5,13 +5,15 @@
 <xacro:include filename="$(find robobase_description)/models/inertia_macros.xacro"/>
 <xacro:property name="base_length" default="1"/>
 <xacro:property name="base_width" default="0.6"/>
-<xacro:property name="base_height" default="0.2"/>
-<xacro:property name="wheel_radius" default="0.2"/>
-<xacro:property name="wheel_width" default="0.1"/>
+<xacro:property name="base_height" default="0.3"/>
+<xacro:property name="wheel_radius" default="0.3"/>
+<xacro:property name="wheel_width" default="0.25"/>
 
 <link name="base_footprint">
     <origin xyz="0 0 0" rpy="0 0 0"/>
 </link>
+
+
 
 <!-- Base Link -->
 <joint name="base_joint" type="fixed">
@@ -20,7 +22,6 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
 </joint>
 
-<!-- Compute base mass -->
 <link name="base_link">
     <xacro:inertial_box x="${base_length}" y="${base_width}" z="${base_height}">
         <origin xyz="0 0 ${base_height / 2}" rpy="0 0 0"/>
@@ -42,6 +43,8 @@
     </collision>
 </link>
 
+
+
 <!-- Lfwheel Link -->
 <joint name="lfwheel_joint" type="continuous">
     <parent link="base_link"/>
@@ -50,7 +53,6 @@
     <axis xyz="0 0 1"/>
 </joint>
 
-<!-- Compute wheel mass -->
 <link name="lfwheel_link">
     <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}">
         <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
@@ -73,6 +75,97 @@
 </link>
 
 
+
+<!-- Rfwheel Link -->
+<joint name="rfwheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="rfwheel_link"/>
+    <origin xyz="${base_length / 2} -${base_width / 2} ${base_height / 2}" rpy="${pi / 2} 0 0"/>
+    <axis xyz="0 0 -1"/>
+</joint>
+
+<link name="rfwheel_link">
+    <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}">
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+    <visual>
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black">
+            <xacro:black/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+    </collision>
+</link>
+
+
+
+<!-- Lbwheel Link -->
+<joint name="lbwheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="lbwheel_link"/>
+    <origin xyz="-${base_length / 2} ${base_width / 2} ${base_height / 2}" rpy="-${pi / 2} 0 0"/>
+    <axis xyz="0 0 1"/>
+</joint>
+
+<link name="lbwheel_link">
+    <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}">
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+    <visual>
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black">
+            <xacro:black/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+    </collision>
+</link>
+
+
+
+<!-- Rbwheel Link -->
+<joint name="rbwheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="rbwheel_link"/>
+    <origin xyz="-${base_length / 2} -${base_width / 2} ${base_height / 2}" rpy="${pi / 2} 0 0"/>
+    <axis xyz="0 0 -1"/>
+</joint>
+
+<link name="rbwheel_link">
+    <xacro:inertial_cylinder radius="${wheel_radius}" length="${wheel_width}">
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+    <visual>
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black">
+            <xacro:black/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 ${wheel_width / 2}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+    </collision>
+</link>
 
 
 
