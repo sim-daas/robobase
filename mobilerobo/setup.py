@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/' + f for f in __import__('os').listdir('launch')]),
+        ('share/' + package_name + '/config', ['config/' + f for f in __import__('os').listdir('config')]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
