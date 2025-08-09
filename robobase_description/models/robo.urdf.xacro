@@ -9,9 +9,13 @@
 <xacro:property name="camera_xyz" default="0.5 0 0.3"/>
 <xacro:property name="camera_rpy" default="0 0 0"/>
 <xacro:property name="camera_parent_link" default="base_link"/>
+<xacro:property name="lidar_parent_link" default="base_link"/>
+<xacro:property name="lidar_xyz" default="0 0 0.35"/>
+<xacro:property name="lidar_rpy" default="0 0 0"/>
 
 <xacro:include filename="$(find robobase_description)/models/bases/rectangular-base.urdf.xacro"/>
 <xacro:include filename="$(find robobase_description)/models/sensors/camera.urdf.xacro"/>
+<xacro:include filename="$(find robobase_description)/models/sensors/lidar.urdf.xacro"/>
 
 </robot>
 
