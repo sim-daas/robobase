@@ -3,11 +3,6 @@
 
 <xacro:include filename="$(find robobase_description)/models/materials.urdf.xacro"/>
 <xacro:include filename="$(find robobase_description)/models/inertia_macros.xacro"/>
-<xacro:property name="base_length" default="1"/>
-<xacro:property name="base_width" default="0.6"/>
-<xacro:property name="base_height" default="0.3"/>
-<xacro:property name="wheel_radius" default="0.3"/>
-<xacro:property name="wheel_width" default="0.25"/>
 
 <link name="base_footprint">
     <origin xyz="0 0 0" rpy="0 0 0"/>
