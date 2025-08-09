@@ -2,33 +2,25 @@
   <!-- Wheel separation and radius properties -->
 
   <!-- Wheel link names (should match those in rectangular-base) -->
-  <xacro:property name="left_front_wheel" default="lfwheel_link"/>
-  <xacro:property name="right_front_wheel" default="rfwheel_link"/>
-  <xacro:property name="left_rear_wheel" default="lrwheel_link"/>
-  <xacro:property name="right_rear_wheel" default="rrwheel_link"/>
+  <xacro:property name="left_front_wheel" default="lfwheel_joint"/>
+  <xacro:property name="right_front_wheel" default="rfwheel_joint"/>
+  <xacro:property name="left_rear_wheel" default="lbwheel_joint"/>
+  <xacro:property name="right_rear_wheel" default="rbwheel_joint"/>
 
   <gazebo>
-    <plugin name="gazebo_ros_diff_drive" filename="libgazebo_ros_diff_drive.so">
-      <ros>
-        <namespace>/</namespace>
-        <remapping>cmd_vel:=cmd_vel</remapping>
-        <remapping>odom:=odom</remapping>
-      </ros>
-      <update_rate>100.0</update_rate>
-      <left_wheel>${left_front_wheel}</left_wheel>
-      <left_wheel>${left_rear_wheel}</left_wheel>
-      <right_wheel>${right_front_wheel}</right_wheel>
-      <right_wheel>${right_rear_wheel}</right_wheel>
-      <wheel_separation>${wheel_separation}</wheel_separation>
-      <wheel_radius>${wheel_radius}</wheel_radius>
-      <publish_odom>true</publish_odom>
-      <publish_wheel_tf>false</publish_wheel_tf>
-      <publish_tf>true</publish_tf>
-      <odometry_frame>odom</odometry_frame>
-      <robot_base_frame>base_link</robot_base_frame>
-      <cmd_vel_topic>cmd_vel</cmd_vel_topic>
-      <odometry_topic>odom</odometry_topic>
-      <enable_odom_tf>true</enable_odom_tf>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+          <left_joint>lbwheel_joint</left_joint>
+      <right_joint>rbwheel_joint</right_joint>
+    <wheel_separation>0.525</wheel_separation>
+      <wheel_radius>0.15</wheel_radius>
+      <max_linear_acceleration>2.0</max_linear_acceleration>
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+      <odom_publisher_frequency>30</odom_publisher_frequency>
+      <tf_topic>/tf</tf_topic>
+
     </plugin>
   </gazebo>
 </robot>
