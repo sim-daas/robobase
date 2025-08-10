@@ -14,7 +14,7 @@
     <left_joint>lfwheel_joint</left_joint>
     <right_joint>rfwheel_joint</right_joint>
     <right_joint>rbwheel_joint</right_joint>
-    <wheel_separation>0.525</wheel_separation>
+    <wheel_separation>0.6</wheel_separation>
       <wheel_radius>0.15</wheel_radius>
       <max_wheel_torque>500.0</max_wheel_torque>     <!-- Increase from default -->
       <max_linear_acceleration>5.0</max_linear_acceleration>

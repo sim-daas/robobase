@@ -66,27 +66,14 @@
         <geometry>
             <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0.2</mu>        <!-- Even lower -->
-              <mu2>0.1</mu2>      <!-- Very low lateral friction -->
-              <!-- <fdir1>1 0 0</fdir1> -->
-              <slip1>0.3</slip1>  <!-- Higher slip -->
-              <slip2>0.4</slip2>  <!-- Much higher lateral slip -->
-            </ode>
-          </friction>
-          <contact>
-            <ode>
-              <kp>1e6</kp>
-              <kd>1e4</kd>
-              <max_vel>0.2</max_vel>
-              <min_depth>0.001</min_depth>
-            </ode>
-          </contact>
-        </surface>
     </collision>
 </link>
+<gazebo reference="lfwheel_link">
+  <material>Gazebo/Black</material>
+  <kp>1e15</kp>
+  <kd>1e14</kd>
+  <fdir1>0 0 1</fdir1>
+</gazebo>
 
 
 
@@ -116,27 +103,14 @@
         <geometry>
             <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0.2</mu>        <!-- Even lower -->
-              <mu2>0.1</mu2>      <!-- Very low lateral friction -->
-              <!-- <fdir1>1 0 0</fdir1> -->
-              <slip1>0.3</slip1>  <!-- Higher slip -->
-              <slip2>0.4</slip2>  <!-- Much higher lateral slip -->
-            </ode>
-          </friction>
-          <contact>
-            <ode>
-              <kp>1e6</kp>
-              <kd>1e4</kd>
-              <max_vel>0.2</max_vel>
-              <min_depth>0.001</min_depth>
-            </ode>
-          </contact>
-        </surface>
     </collision>
 </link>
+<gazebo reference="rfwheel_link">
+  <material>Gazebo/Black</material>
+  <kp>1e15</kp>
+  <kd>1e14</kd>
+  <fdir1>0 0 1</fdir1>
+</gazebo>
 
 
 
@@ -166,27 +140,14 @@
         <geometry>
             <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0.2</mu>        <!-- Even lower -->
-              <mu2>0.1</mu2>      <!-- Very low lateral friction -->
-              <!-- <fdir1>1 0 0</fdir1> -->
-              <slip1>0.3</slip1>  <!-- Higher slip -->
-              <slip2>0.4</slip2>  <!-- Much higher lateral slip -->
-            </ode>
-          </friction>
-          <contact>
-            <ode>
-              <kp>1e6</kp>
-              <kd>1e4</kd>
-              <max_vel>0.2</max_vel>
-              <min_depth>0.001</min_depth>
-            </ode>
-          </contact>
-        </surface>
     </collision>
 </link>
+<gazebo reference="lbwheel_link">
+  <material>Gazebo/Black</material>
+  <kp>1e15</kp>
+  <kd>1e14</kd>
+  <fdir1>0 0 1</fdir1>
+</gazebo>
 
 
 
@@ -216,27 +177,14 @@
         <geometry>
             <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0.2</mu>        <!-- Even lower -->
-              <mu2>0.1</mu2>      <!-- Very low lateral friction -->
-              <!-- <fdir1>1 0 0</fdir1> -->
-              <slip1>0.3</slip1>  <!-- Higher slip -->
-              <slip2>0.4</slip2>  <!-- Much higher lateral slip -->
-            </ode>
-          </friction>
-          <contact>
-            <ode>
-              <kp>1e6</kp>
-              <kd>1e4</kd>
-              <max_vel>0.2</max_vel>
-              <min_depth>0.001</min_depth>
-            </ode>
-          </contact>
-        </surface>
     </collision>
 </link>
+<gazebo reference="rbwheel_link">
+  <material>Gazebo/Black</material>
+  <kp>1e15</kp>
+  <kd>1e14</kd>
+  <fdir1>0 0 1</fdir1>
+</gazebo>
 
 <gazebo>
     <plugin name="gz::sim::systems::JointStatePublisher"
