@@ -16,7 +16,7 @@
     <right_joint>rbwheel_joint</right_joint>
     <wheel_separation>0.6</wheel_separation>
       <wheel_radius>0.15</wheel_radius>
-      <max_wheel_torque>500.0</max_wheel_torque>     <!-- Increase from default -->
+      <max_wheel_torque>500.0</max_wheel_torque>    
       <max_linear_acceleration>5.0</max_linear_acceleration>
       <topic>cmd_vel</topic>
       <odom_topic>odom</odom_topic>

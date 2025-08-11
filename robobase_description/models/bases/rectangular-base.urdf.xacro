@@ -73,6 +73,8 @@
   <kp>1e15</kp>
   <kd>1e14</kd>
   <fdir1>0 0 1</fdir1>
+  <mu>1</mu>
+  <mu2>1</mu2>
 </gazebo>
 
 
@@ -110,6 +112,8 @@
   <kp>1e15</kp>
   <kd>1e14</kd>
   <fdir1>0 0 1</fdir1>
+  <mu>1</mu>
+  <mu2>1</mu2>
 </gazebo>
 
 
@@ -147,6 +151,8 @@
   <kp>1e15</kp>
   <kd>1e14</kd>
   <fdir1>0 0 1</fdir1>
+  <mu>1</mu>
+  <mu2>1</mu2>
 </gazebo>
 
 
@@ -184,6 +190,8 @@
   <kp>1e15</kp>
   <kd>1e14</kd>
   <fdir1>0 0 1</fdir1>
+  <mu>1</mu>
+  <mu2>1</mu2>
 </gazebo>
 
 <gazebo>
