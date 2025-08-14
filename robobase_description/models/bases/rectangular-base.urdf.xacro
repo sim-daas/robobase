@@ -68,12 +68,8 @@
     </collision>
 </link>
 <gazebo reference="lfwheel_link">
-  <joint name="lfwheel_joint" type="ball">
-    <parent>base_link</parent>
-    <child>lfwheel_joint</child>
-  </joint>
-  <mu1>2.0</mu1>
-  <mu2>2.0</mu2>
+  <mu1>3.0</mu1>
+  <mu2>3.0</mu2>
   <material>Gazebo/Black</material>
 </gazebo>
 
@@ -107,12 +103,8 @@
     </collision>
 </link>
 <gazebo reference="rfwheel_link">
-  <joint name="rfwheel_joint" type="ball">
-    <parent>base_link</parent>
-    <child>rfwheel_joint</child>
-  </joint>
-  <mu1>2.0</mu1>
-  <mu2>2.0</mu2>
+  <mu1>3.0</mu1>
+  <mu2>3.0</mu2>
   <material>Gazebo/Black</material>
 </gazebo>
 
@@ -149,8 +141,8 @@
     </collision>
 </link>
 <gazebo reference="lbwheel_link">
-  <mu1>2.0</mu1>
-  <mu2>2.0</mu2>
+  <mu1>3.0</mu1>
+  <mu2>3.0</mu2>
   <material>Gazebo/Black</material>
 </gazebo>
 
@@ -187,8 +179,8 @@
     </collision>
 </link>
 <gazebo reference="rbwheel_link">
-  <mu1>2.0</mu1>
-  <mu2>2.0</mu2>
+  <mu1>3.0</mu1>
+  <mu2>3.0</mu2>
   <material>Gazebo/Black</material>
 </gazebo>
 
