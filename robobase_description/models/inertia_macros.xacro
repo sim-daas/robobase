@@ -39,4 +39,23 @@
         izz="${0.5 * _icyl_mass * radius * radius}"/>
     </inertial>
   </xacro:macro>
+
+  <!-- Inertial for a solid sphere -->
+  <!-- If mass not provided, computed as density * (4/3) * pi * r^3 -->
+  <xacro:macro name="inertial_sphere" params="radius mass:='' density:=${default_density} *origin">
+    <xacro:if value="${mass == ''}">
+      <xacro:property name="_isphere_mass" value="${density * (4.0/3.0) * 3.141592653589793 * radius * radius * radius}"/>
+    </xacro:if>
+    <xacro:if value="${mass != ''}">
+      <xacro:property name="_isphere_mass" value="${mass}"/>
+    </xacro:if>
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${_isphere_mass}"/>
+      <inertia
+        ixx="${(2.0/5.0) * _isphere_mass * radius * radius}" ixy="0" ixz="0"
+        iyy="${(2.0/5.0) * _isphere_mass * radius * radius}" iyz="0"
+        izz="${(2.0/5.0) * _isphere_mass * radius * radius}"/>
+    </inertial>
+  </xacro:macro>
 </robot>

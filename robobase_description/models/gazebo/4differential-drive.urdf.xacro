@@ -2,20 +2,16 @@
   <!-- Wheel separation and radius properties -->
 
   <!-- Wheel link names (should match those in rectangular-base) -->
-  <xacro:property name="left_front_wheel" default="lfwheel_joint"/>
-  <xacro:property name="right_front_wheel" default="rfwheel_joint"/>
   <xacro:property name="left_rear_wheel" default="lbwheel_joint"/>
   <xacro:property name="right_rear_wheel" default="rbwheel_joint"/>
 
   <gazebo>
     <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
-    <num_wheel_pairs>2</num_wheel_pairs>
+    <num_wheel_pairs>1</num_wheel_pairs>
     <left_joint>lbwheel_joint</left_joint>
-    <left_joint>lfwheel_joint</left_joint>
-    <right_joint>rfwheel_joint</right_joint>
     <right_joint>rbwheel_joint</right_joint>
     <wheel_separation>0.6</wheel_separation>
-    <wheel_diameter>0.3</wheel_diameter>
+    <wheel_radius>${wheel_radius}</wheel_radius>
       <max_wheel_torque>500.0</max_wheel_torque>    
       <max_linear_acceleration>5.0</max_linear_acceleration>
       <topic>cmd_vel</topic>

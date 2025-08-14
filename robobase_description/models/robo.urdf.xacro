@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robobase">
 
-<xacro:property name="base_length" default="0.8"/>
+<xacro:property name="base_length" default="1"/>
 <xacro:property name="base_width" default="0.45"/>
 <xacro:property name="base_height" default="0.2"/>
-<xacro:property name="wheel_radius" default="0.15"/>
-<xacro:property name="wheel_width" default="0.15"/>
+<xacro:property name="wheel_radius" default="0.2"/>
+<xacro:property name="castor_radius" default="${wheel_radius / 2}"/>
+<xacro:property name="wheel_width" default="0.2"/>
 <xacro:property name="camera_xyz" default="0.425 0 0.175"/>
 <xacro:property name="camera_rpy" default="0 0 0"/>
 <xacro:property name="camera_parent_link" default="base_link"/>
