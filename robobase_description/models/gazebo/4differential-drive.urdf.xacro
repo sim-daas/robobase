@@ -25,9 +25,10 @@
   </gazebo>
   -->
 
+  <!-- ROS2 Control -->
   <ros2_control name="GazeboSystem" type="system">
     <hardware>
-        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
     <joint name="lbwheel_joint">
       <command_interface name="velocity">
@@ -47,4 +48,14 @@
     </joint>
   </ros2_control>
 
+  <!-- Gazebo ROS2 Control Plugin -->
+  <gazebo>
+    <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find mobilerobo)/config/controllers.yaml</parameters>
+      <ros>
+        <remapping>/tf:=tf</remapping>
+        <remapping>/tf_static:=tf_static</remapping>
+      </ros>
+    </plugin>
+  </gazebo>
 </robot>

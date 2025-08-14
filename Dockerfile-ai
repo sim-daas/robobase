@@ -30,8 +30,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-joint-state-publisher-gui \
     ros-jazzy-ros2-control \
     ros-jazzy-ros2-controllers \
-apt install ros-jazzy-gazebo-ros2-control
-    && rm -rf /var/lib/apt/lists/*
+apt install ros-jazzy-gz-ros2-control ros-jazzy-gz-ros2-control-demos    && rm -rf /var/lib/apt/lists/*
 
 # Install tmuxinator gem
 RUN gem install tmuxinator

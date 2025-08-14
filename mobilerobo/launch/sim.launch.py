@@ -2,10 +2,11 @@ import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, AppendEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, Command
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     # Get the package directory
@@ -14,6 +15,7 @@ def generate_launch_description():
     controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     # Path to the URDF xacro file
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
+    urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
 
     # World file path
     world_file = os.path.join(pkg_share, 'worlds', 'empty.sdf')
@@ -98,7 +100,16 @@ def generate_launch_description():
     ros2_control_node = Node(
         package='controller_manager',
         executable='ros2_control_node',
-        parameters=[urdf_file, controller_config],
+        parameters=[
+            {
+                'robot_description': ParameterValue(
+                    Command(['xacro ', urdf_xacro]),
+                    value_type=str
+                ),
+                'use_sim_time': LaunchConfiguration('use_sim_time')
+            },
+            controller_config
+        ],
         output='screen',
     )
 
