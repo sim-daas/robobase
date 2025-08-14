@@ -5,6 +5,7 @@
   <xacro:property name="left_rear_wheel" default="lbwheel_joint"/>
   <xacro:property name="right_rear_wheel" default="rbwheel_joint"/>
 
+  <!--
   <gazebo>
     <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
     <num_wheel_pairs>1</num_wheel_pairs>
@@ -20,7 +21,30 @@
       <child_frame_id>base_footprint</child_frame_id>
       <odom_publisher_frequency>30</odom_publisher_frequency>
       <tf_topic>/tf</tf_topic>
-
     </plugin>
   </gazebo>
+  -->
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="lbwheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rbwheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
 </robot>

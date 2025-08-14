@@ -11,7 +11,7 @@ def generate_launch_description():
     # Get the package directory
     pkg_share = FindPackageShare(package='mobilerobo').find('mobilerobo')
     robot_discription_directory = get_package_share_directory('robobase_description')
-
+    controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     # Path to the URDF xacro file
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
 
@@ -94,6 +94,22 @@ def generate_launch_description():
         }.items()
     )
 
+    # Launch ros2_control node (controller_manager) with params
+    ros2_control_node = Node(
+        package='controller_manager',
+        executable='ros2_control_node',
+        parameters=[urdf_file, controller_config],
+        output='screen',
+    )
+
+    # Load and start the Differential Drive Controller
+    diff_drive_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
+    )
+
+
     return LaunchDescription([
         use_sim_time,
         x,
@@ -102,6 +118,8 @@ def generate_launch_description():
         gzserver_cmd,
         gzclient_cmd,
         robot_spawn_launch,
+        ros2_control_node,
+        diff_drive_controller_spawner,
         rviz_node,
         bridge_cmd,
     ])
