@@ -102,11 +102,8 @@ def generate_launch_description():
         executable='ros2_control_node',
         parameters=[
             {
-                'robot_description': ParameterValue(
-                    Command(['xacro ', urdf_xacro]),
-                    value_type=str
-                ),
-                'use_sim_time': LaunchConfiguration('use_sim_time')
+                'use_sim_time': LaunchConfiguration('use_sim_time'),
+                'robot_description_topic': '/robot_description'
             },
             controller_config
         ],
@@ -134,7 +131,3 @@ def generate_launch_description():
         rviz_node,
         bridge_cmd,
     ])
-
-
-
-
