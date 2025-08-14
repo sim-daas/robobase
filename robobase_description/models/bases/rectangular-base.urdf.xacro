@@ -46,6 +46,8 @@
     <child link="lfwheel_link"/>
     <origin xyz="${base_length / 2} ${base_width / 2} ${base_height / 2}" rpy="-${pi / 2} 0 0"/>
     <axis xyz="0 0 1"/>
+    <limit effort="1000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
 </joint>
 
 <link name="lfwheel_link">
@@ -69,12 +71,9 @@
     </collision>
 </link>
 <gazebo reference="lfwheel_link">
-  <material>Gazebo/Black</material>
-  <kp>1e15</kp>
-  <kd>1e14</kd>
-  <fdir1>0 0 1</fdir1>
-  <mu>1</mu>
-  <mu2>1</mu2>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <material>Gazebo/Yellow</material>
 </gazebo>
 
 
@@ -85,6 +84,8 @@
     <child link="rfwheel_link"/>
     <origin xyz="${base_length / 2} -${base_width / 2} ${base_height / 2}" rpy="${pi / 2} 0 0"/>
     <axis xyz="0 0 -1"/>
+    <limit effort="1000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
 </joint>
 
 <link name="rfwheel_link">
@@ -108,12 +109,9 @@
     </collision>
 </link>
 <gazebo reference="rfwheel_link">
-  <material>Gazebo/Black</material>
-  <kp>1e15</kp>
-  <kd>1e14</kd>
-  <fdir1>0 0 1</fdir1>
-  <mu>1</mu>
-  <mu2>1</mu2>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <material>Gazebo/Yellow</material>
 </gazebo>
 
 
@@ -124,6 +122,8 @@
     <child link="lbwheel_link"/>
     <origin xyz="-${base_length / 2} ${base_width / 2} ${base_height / 2}" rpy="-${pi / 2} 0 0"/>
     <axis xyz="0 0 1"/>
+    <limit effort="1000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
 </joint>
 
 <link name="lbwheel_link">
@@ -147,12 +147,9 @@
     </collision>
 </link>
 <gazebo reference="lbwheel_link">
-  <material>Gazebo/Black</material>
-  <kp>1e15</kp>
-  <kd>1e14</kd>
-  <fdir1>0 0 1</fdir1>
-  <mu>1</mu>
-  <mu2>1</mu2>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <material>Gazebo/Yellow</material>
 </gazebo>
 
 
@@ -163,6 +160,8 @@
     <child link="rbwheel_link"/>
     <origin xyz="-${base_length / 2} -${base_width / 2} ${base_height / 2}" rpy="${pi / 2} 0 0"/>
     <axis xyz="0 0 -1"/>
+    <limit effort="1000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
 </joint>
 
 <link name="rbwheel_link">
@@ -186,13 +185,11 @@
     </collision>
 </link>
 <gazebo reference="rbwheel_link">
-  <material>Gazebo/Black</material>
-  <kp>1e15</kp>
-  <kd>1e14</kd>
-  <fdir1>0 0 1</fdir1>
-  <mu>1</mu>
-  <mu2>1</mu2>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <material>Gazebo/Yellow</material>
 </gazebo>
+
 
 <gazebo>
     <plugin name="gz::sim::systems::JointStatePublisher"

@@ -15,7 +15,7 @@
     <right_joint>rfwheel_joint</right_joint>
     <right_joint>rbwheel_joint</right_joint>
     <wheel_separation>0.6</wheel_separation>
-      <wheel_radius>0.15</wheel_radius>
+    <wheel_diameter>0.3</wheel_diameter>
       <max_wheel_torque>500.0</max_wheel_torque>    
       <max_linear_acceleration>5.0</max_linear_acceleration>
       <topic>cmd_vel</topic>

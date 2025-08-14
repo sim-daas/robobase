@@ -16,7 +16,7 @@ def generate_launch_description():
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
 
     # World file path
-    world_file = os.path.join(pkg_share, 'worlds', 'empty.world')
+    world_file = os.path.join(pkg_share, 'worlds', 'empty.sdf')
     
     # Declare launch arguments
     use_sim_time = DeclareLaunchArgument(
