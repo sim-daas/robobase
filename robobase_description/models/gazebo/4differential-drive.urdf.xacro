@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Wheel separation and radius properties -->
 
@@ -26,7 +27,7 @@
   -->
 
   <!-- ROS2 Control -->
-  <ros2_control name="GazeboSystem" type="system">
+<!--   <ros2_control name="GazeboSystem" type="system">
     <hardware>
        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
@@ -46,12 +47,12 @@
       <state_interface name="position"/>
       <state_interface name="velocity"/>
     </joint>
-  </ros2_control>
+  </ros2_control> -->
 
   <!-- Gazebo ROS2 Control Plugin -->
   <gazebo>
     <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>$(find mobilerobo)/config/controllers.yaml</parameters>
+      <parameters>/root/robows/src/robobase/mobilerobo/config/controllers.yaml</parameters>
       <ros>
         <remapping>/tf:=tf</remapping>
         <remapping>/tf_static:=tf_static</remapping>

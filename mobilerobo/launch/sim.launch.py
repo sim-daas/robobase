@@ -109,6 +109,12 @@ def generate_launch_description():
         ],
         output='screen',
     )
+    
+    joint_state_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
+    )
 
     # Load and start the Differential Drive Controller
     diff_drive_controller_spawner = Node(
@@ -126,8 +132,9 @@ def generate_launch_description():
         gzserver_cmd,
         gzclient_cmd,
         robot_spawn_launch,
-        ros2_control_node,
-        # diff_drive_controller_spawner,
+        # ros2_control_node,
+        joint_state_broadcaster_spawner,
+        diff_drive_controller_spawner,
         rviz_node,
         bridge_cmd,
     ])

@@ -18,7 +18,7 @@
 <xacro:include filename="$(find robobase_description)/models/bases/rectangular-base.urdf.xacro"/>
 <xacro:include filename="$(find robobase_description)/models/sensors/camera.urdf.xacro"/>
 <xacro:include filename="$(find robobase_description)/models/sensors/lidar.urdf.xacro"/>
-<xacro:include filename="$(find robobase_description)/models/gazebo/4differential-drive.urdf.xacro"/>
+<!-- <xacro:include filename="$(find robobase_description)/models/gazebo/4differential-drive.urdf.xacro"/> -->
 
 </robot>
 
