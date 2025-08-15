@@ -203,6 +203,14 @@
     <hardware>
         <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
+    <joint name="lfwheel_joint">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="rfwheel_joint">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
     <joint name="lbwheel_joint">
         <command_interface name="velocity">
         <param name="min">-100</param>
