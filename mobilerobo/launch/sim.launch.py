@@ -126,7 +126,7 @@ def generate_launch_description():
         gzserver_cmd,
         gzclient_cmd,
         robot_spawn_launch,
-        # ros2_control_node,
+        ros2_control_node,
         # diff_drive_controller_spawner,
         rviz_node,
         bridge_cmd,

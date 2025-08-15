@@ -28,7 +28,7 @@
   <!-- ROS2 Control -->
   <ros2_control name="GazeboSystem" type="system">
     <hardware>
-      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+       <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
     <joint name="lbwheel_joint">
       <command_interface name="velocity">

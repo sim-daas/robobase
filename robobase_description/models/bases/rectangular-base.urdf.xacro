@@ -185,12 +185,12 @@
 </gazebo>
 
 
-<gazebo>
+<!-- <gazebo>
     <plugin name="gz::sim::systems::JointStatePublisher"
             filename="gz-sim-joint-state-publisher-system">
       <topic>joint_states</topic>
     </plugin>
-</gazebo>
+</gazebo> -->
 
 <gazebo>
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
