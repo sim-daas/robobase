@@ -1,4 +1,6 @@
 import os
+from launch.actions import RegisterEventHandler
+from launch.event_handlers import OnProcessExit
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, AppendEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -117,7 +119,7 @@ def generate_launch_description():
     )
 
     # Load and start the Differential Drive Controller
-    diff_drive_controller_spawner = Node(
+    diff_drive_base_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
@@ -132,9 +134,13 @@ def generate_launch_description():
         gzserver_cmd,
         gzclient_cmd,
         robot_spawn_launch,
-        # ros2_control_node,
         joint_state_broadcaster_spawner,
-        diff_drive_controller_spawner,
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=joint_state_broadcaster_spawner,
+                on_exit=[diff_drive_base_controller_spawner],
+            )
+        ),
         rviz_node,
         bridge_cmd,
     ])
