@@ -122,6 +122,15 @@ def generate_launch_description():
         }.items()
     )
 
+    odom_relay_node = Node(
+        package='topic_tools',
+        executable='relay',
+        name='odom_relay',
+        output='screen',
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        arguments=['/diff_drive_controller/odom', '/odom']
+    )
+
     
     return LaunchDescription([
         use_sim_time,
@@ -138,6 +147,7 @@ def generate_launch_description():
                 on_exit=[diff_drive_base_controller_spawner],
             )
         ),
+        odom_relay_node,
         slam_toolbox_node,
         rviz_node,
         bridge_cmd,
