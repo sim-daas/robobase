@@ -1,0 +1,499 @@
+<sdf version='1.11'>
+  <model name='robobase'>
+    <link name='base_footprint'>
+      <inertial>
+        <pose>0.50017641129032253 0 0.1004620295698925 0 0 0</pose>
+        <mass>297.60000000000008</mass>
+        <inertia>
+          <ixx>8.5122739709341424</ixx>
+          <ixy>0</ixy>
+          <ixz>-0.0039132434475792621</ixz>
+          <iyy>25.802952209341399</iyy>
+          <iyz>0</iyz>
+          <izz>32.265528238407263</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_footprint_fixed_joint_lump__base_link_collision'>
+        <pose>0.5 0 0.10000000000000001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 0.55000000000000004 0.20000000000000001</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__camera_link_collision_1'>
+        <pose>1.0249999999999999 0 0.17499999999999999 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.050000000000000003 0.050000000000000003 0.050000000000000003</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__lidar_link_collision_2'>
+        <pose>0.5 0 0.31000000000000011 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.070000000000000007</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_footprint_fixed_joint_lump__base_link_visual'>
+        <pose>0.5 0 0.10000000000000001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 0.55000000000000004 0.20000000000000001</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__camera_link_visual_1'>
+        <pose>1.0249999999999999 0 0.17499999999999999 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.050000000000000003 0.050000000000000003 0.050000000000000003</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__lidar_link_visual_2'>
+        <pose>0.5 0 0.31000000000000011 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.070000000000000007</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <sensor name='camera_sensor' type='camera'>
+        <camera>
+          <horizontal_fov>1.0469999999999999</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.10000000000000001</near>
+            <far>100</far>
+          </clip>
+          <camera_info_topic>camera/camera_info</camera_info_topic>
+        </camera>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+        <topic>camera/image_raw</topic>
+        <pose>1.0249999999999999 0 0.17499999999999999 0 0 0</pose>
+        <gz_frame_id>camera_link</gz_frame_id>
+      </sensor>
+      <sensor name='imu_sensor' type='imu'>
+        <always_on>true</always_on>
+        <update_rate>200</update_rate>
+        <topic>imu</topic>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00020000000000000001</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00020000000000000001</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00020000000000000001</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017000000000000001</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017000000000000001</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017000000000000001</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <pose>0.5 0 0 0 0 0</pose>
+      </sensor>
+      <sensor name='lidar_sensor' type='gpu_lidar'>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <topic>scan</topic>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>6.2800000000000002</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10000000000000001</min>
+            <max>8</max>
+            <resolution>0.014999999999999999</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </lidar>
+        <pose>0.5 0 0.31 0 0 0</pose>
+        <gz_frame_id>lidar_link</gz_frame_id>
+      </sensor>
+    </link>
+    <joint name='lbwheel_joint' type='revolute'>
+      <pose relative_to='base_footprint'>0 0.27500000000000002 0.10000000000000001 -1.5707963267948959 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>lbwheel_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>1000</effort>
+          <velocity>1000</velocity>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='lbwheel_link'>
+      <pose relative_to='lbwheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.10000000000000001 0 0 0</pose>
+        <mass>67.858401317539546</mass>
+        <inertia>
+          <ixx>0.90477868423386076</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.90477868423386076</iyy>
+          <iyz>0</iyz>
+          <izz>1.357168026350791</izz>
+        </inertia>
+      </inertial>
+      <collision name='lbwheel_link_collision'>
+        <pose>0 0 0.10000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.20000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>3</mu>
+              <mu2>3</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='lbwheel_link_visual'>
+        <pose>0 0 0.10000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.20000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Black</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='lfwheel_joint' type='revolute'>
+      <pose relative_to='base_footprint'>1 0.27500000000000002 0 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>lfwheel_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='lfwheel_link'>
+      <pose relative_to='lfwheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>11.309733552923261</mass>
+        <inertia>
+          <ixx>0.045238934211693033</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.045238934211693033</iyy>
+          <iyz>0</iyz>
+          <izz>0.045238934211693033</izz>
+        </inertia>
+      </inertial>
+      <collision name='lfwheel_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.10000000000000001</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>3</mu>
+              <mu2>3</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='lfwheel_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.10000000000000001</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Black</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rbwheel_joint' type='revolute'>
+      <pose relative_to='base_footprint'>0 -0.27500000000000002 0.10000000000000001 1.5707963267948959 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>rbwheel_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <effort>1000</effort>
+          <velocity>1000</velocity>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rbwheel_link'>
+      <pose relative_to='rbwheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.10000000000000001 0 0 0</pose>
+        <mass>67.858401317539546</mass>
+        <inertia>
+          <ixx>0.90477868423386076</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.90477868423386076</iyy>
+          <iyz>0</iyz>
+          <izz>1.357168026350791</izz>
+        </inertia>
+      </inertial>
+      <collision name='rbwheel_link_collision'>
+        <pose>0 0 0.10000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.20000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>3</mu>
+              <mu2>3</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rbwheel_link_visual'>
+        <pose>0 0 0.10000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.20000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Black</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rfwheel_joint' type='revolute'>
+      <pose relative_to='base_footprint'>1 -0.27500000000000002 0 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>rfwheel_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rfwheel_link'>
+      <pose relative_to='rfwheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>11.309733552923261</mass>
+        <inertia>
+          <ixx>0.045238934211693033</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.045238934211693033</iyy>
+          <iyz>0</iyz>
+          <izz>0.045238934211693033</izz>
+        </inertia>
+      </inertial>
+      <collision name='rfwheel_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.10000000000000001</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>3</mu>
+              <mu2>3</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rfwheel_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.10000000000000001</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Black</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin name='gz_ros2_control::GazeboSimROS2ControlPlugin' filename='libgz_ros2_control-system.so'>
+      <parameters>/root/robows/src/robobase/mobilerobo/config/controllers.yaml</parameters>
+    </plugin>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <frame name='camera_joint' attached_to='base_link'>
+      <pose>0.52500000000000002 0 0.17499999999999999 0 0 0</pose>
+    </frame>
+    <frame name='camera_link' attached_to='camera_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='imu_joint' attached_to='base_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='imu_link' attached_to='imu_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='lidar_joint' attached_to='base_link'>
+      <pose>0 0 0.31000000000000011 0 0 0</pose>
+    </frame>
+    <frame name='lidar_link' attached_to='lidar_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='base_joint' attached_to='base_footprint'>
+      <pose>0.5 0 0 0 0 0</pose>
+    </frame>
+    <frame name='base_link' attached_to='base_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>

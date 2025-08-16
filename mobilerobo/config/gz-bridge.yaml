@@ -10,7 +10,7 @@
     gz_topic_name: /imu
     ros_type_name: sensor_msgs/msg/Imu
     gz_type_name: gz.msgs.IMU
-    direction: BIDIRECTIONAL
+    direction: GZ_TO_ROS
 
   # Camera sensor bridge (if present)
   - ros_topic_name: /camera/image_raw

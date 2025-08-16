@@ -24,7 +24,7 @@ slam_toolbox:
     # The maximum usable range of the laser. Values further than this are ignored.
     max_laser_range: 6.0 # meters
     # How many scans to buffer for matching.
-    scan_buffer_size: 30
+    scan_buffer_size: 15
 
     # LOOP CLOSURE (Detecting a place you've been before)
     # The minimum number of scans in a sequence to be considered for a loop closure.

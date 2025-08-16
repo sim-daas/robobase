@@ -11,6 +11,8 @@ Panels:
         - /Camera1
         - /LaserScan1
         - /Map1
+        - /Odometry1
+        - /Odometry1/Shape1
       Splitter Ratio: 0.5
     Tree Height: 507
   - Class: rviz_common/Selection
@@ -65,13 +67,13 @@ Visualization Manager:
           Value: true
         camera_link:
           Value: true
+        imu_link:
+          Value: true
         lbwheel_link:
           Value: true
         lfwheel_link:
           Value: true
         lidar_link:
-          Value: true
-        map:
           Value: true
         odom:
           Value: true
@@ -85,24 +87,23 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        base_footprint:
-          base_link:
-            camera_link:
-              {}
-            lbwheel_link:
-              {}
-            lfwheel_link:
-              {}
-            lidar_link:
-              {}
-            rbwheel_link:
-              {}
-            rfwheel_link:
-              {}
-        map:
-          {}
         odom:
-          {}
+          base_footprint:
+            base_link:
+              camera_link:
+                {}
+              imu_link:
+                {}
+              lbwheel_link:
+                {}
+              lfwheel_link:
+                {}
+              lidar_link:
+                {}
+              rbwheel_link:
+                {}
+              rfwheel_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -137,6 +138,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         lbwheel_link:
           Alpha: 1
           Show Axes: false
@@ -187,6 +192,7 @@ Visualization Manager:
         Grid: true
         LaserScan: true
         Map: true
+        Odometry: true
         RobotModel: true
         TF: true
         Value: true
@@ -248,6 +254,45 @@ Visualization Manager:
         Value: /map_updates
       Use Timestamp: false
       Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz_default_plugins/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /diff_drive_controller/odom
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -301,18 +346,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.3531186282634735
-        Y: 0.5549243688583374
-        Z: -0.0007341410964727402
+        X: -0.41374266147613525
+        Y: -0.3004889190196991
+        Z: 0.5253602862358093
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.46039843559265137
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.345417022705078
+      Yaw: 2.3254168033599854
     Saved: ~
 Window Geometry:
   Camera:

@@ -185,14 +185,6 @@
 </gazebo>
 
 
-<!-- <gazebo>
-    <plugin name="gz::sim::systems::JointStatePublisher"
-            filename="gz-sim-joint-state-publisher-system">
-      <topic>joint_states</topic>
-    </plugin>
-</gazebo> -->
-
-
 <gazebo>
   <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
     <parameters>/root/robows/src/robobase/mobilerobo/config/controllers.yaml</parameters>
