@@ -23,7 +23,7 @@ def generate_launch_description():
     urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
 
     # World file path
-    world_file = os.path.join(pkg_share, 'worlds', 'empty.sdf')
+    world_file = os.path.join(pkg_share, 'worlds', 'house.world')
     
     # Declare launch arguments
     use_sim_time = DeclareLaunchArgument(
@@ -40,7 +40,7 @@ def generate_launch_description():
     
     y = DeclareLaunchArgument(
         'y',
-        default_value='0.0',
+        default_value='-5.0',
         description='Y position of the robot in the world'
     )
    
