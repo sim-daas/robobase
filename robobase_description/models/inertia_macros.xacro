@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Default density (kg/m^3) -->
-  <xacro:property name="default_density" value="2700"/>
+  <xacro:property name="default_density" value="27"/>
 
   <!-- Inertial for a box (URDF axes aligned, origin at box center) -->
   <!-- If mass not provided, computed as density * x * y * z -->

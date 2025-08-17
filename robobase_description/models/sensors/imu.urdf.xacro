@@ -14,6 +14,11 @@
 
 <link name="imu_link"/>
 
+<gazebo>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+    </plugin>
+</gazebo>
+
 
 
 
@@ -22,6 +27,7 @@
             <always_on>true</always_on>
             <update_rate>200</update_rate>
             <topic>imu</topic>
+            <gz_frame_id>imu_link</gz_frame_id>
             <imu>
             <angular_velocity>
                 <x>
