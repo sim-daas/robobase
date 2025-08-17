@@ -276,7 +276,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: true
+      Enabled: false
       Keep: 100
       Name: Odometry
       Position Tolerance: 0.10000000149011612
@@ -297,7 +297,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /diff_drive_controller/odom
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -344,25 +344,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 4.824375152587891
+      Distance: 7.59124755859375
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.12301210314035416
-        Y: -0.18177597224712372
-        Z: 0.8232052326202393
+        X: -0.45396265387535095
+        Y: 0.16082793474197388
+        Z: 1.347995400428772
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8497970104217529
+      Pitch: 0.7347971200942993
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.8204259872436523
+      Yaw: 3.120415210723877
     Saved: ~
 Window Geometry:
   Camera:
