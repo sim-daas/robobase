@@ -1,0 +1,11 @@
+topics:
+  - name: joy
+    topic: /cmd_vel_joy
+    timeout: 0.5
+    priority: 10
+  - name: teleop
+    topic: /cmd_vel
+    timeout: 0.5
+    priority: 5
+
+output_topic: /diff_drive_controller/cmd_vel_unstamped
