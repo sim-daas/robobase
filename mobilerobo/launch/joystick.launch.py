@@ -14,9 +14,9 @@ def generate_launch_description():
             parameters=[{
                 'axis_linear': {'x': 1},
                 'axis_angular': {'yaw': 0},
-                'scale_linear': {'x': 0.5},
+                'scale_linear': {'x': 1.0},
                 'scale_angular': {'yaw': 0.5},
-                'scale_linear_turbo': {'x': 1.0},
+                'scale_linear_turbo': {'x': 3.0},
                 'scale_angular_turbo': {'x': 0.5},
                 'publish_stamped_twist': True,
                 'enable_button': 10,
