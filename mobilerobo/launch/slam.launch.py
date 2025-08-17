@@ -16,6 +16,7 @@ def generate_launch_description():
     robot_discription_directory = get_package_share_directory('robobase_description')
     controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     slam_config = os.path.join(pkg_share, 'config', 'slam-config.yaml')
+    ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
     # Path to the URDF xacro file
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
     urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
@@ -99,6 +100,15 @@ def generate_launch_description():
         }.items()
     )
 
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[ekf_config_path, {'use_sim_time': LaunchConfiguration('use_sim_time')}]
+    )
+
+
     joint_state_broadcaster_spawner = Node(
         package='controller_manager',
         executable='spawner',
@@ -128,7 +138,7 @@ def generate_launch_description():
         name='odom_relay',
         output='screen',
         parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
-        arguments=['/diff_drive_controller/odom', '/odom']
+        arguments=['/odometry/filtered', '/odom']
     )
 
     
@@ -147,7 +157,7 @@ def generate_launch_description():
                 on_exit=[diff_drive_base_controller_spawner],
             )
         ),
-    #    odom_relay_node,
+        odom_relay_node,
         slam_toolbox_node,
         rviz_node,
         bridge_cmd,
