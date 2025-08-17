@@ -159,7 +159,7 @@ def generate_launch_description():
             )
         ),
         odom_relay_node,
-        slam_toolbox_node,
+       # slam_toolbox_node,
         rviz_node,
         bridge_cmd,
     ])

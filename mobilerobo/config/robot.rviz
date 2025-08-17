@@ -75,8 +75,6 @@ Visualization Manager:
           Value: true
         lidar_link:
           Value: true
-        map:
-          Value: true
         odom:
           Value: true
         rbwheel_link:
@@ -89,26 +87,23 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        base_footprint:
-          base_link:
-            camera_link:
-              {}
-            imu_link:
-              {}
-            lbwheel_link:
-              {}
-            lfwheel_link:
-              {}
-            lidar_link:
-              {}
-            rbwheel_link:
-              {}
-            rfwheel_link:
-              {}
-        map:
-          {}
         odom:
-          {}
+          base_footprint:
+            base_link:
+              camera_link:
+                {}
+              imu_link:
+                {}
+              lbwheel_link:
+                {}
+              lfwheel_link:
+                {}
+              lidar_link:
+                {}
+              rbwheel_link:
+                {}
+              rfwheel_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -301,7 +296,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
