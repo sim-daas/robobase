@@ -150,6 +150,7 @@ def generate_launch_description():
         gzserver_cmd,
         gzclient_cmd,
         robot_spawn_launch,
+        robot_localization_node,
         joint_state_broadcaster_spawner,
         RegisterEventHandler(
             event_handler=OnProcessExit(
