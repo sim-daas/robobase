@@ -12,6 +12,11 @@ install(
   FILES_MATCHING PATTERN "*.xacro" PATTERN "*.urdf"
 )
 
+install(
+  DIRECTORY models/turtlebot3_house/
+  DESTINATION share/${PROJECT_NAME}/models/turtlebot3_house
+)
+
 # Explicitly install all xacro files in models/bases
 install(
   DIRECTORY models/bases/

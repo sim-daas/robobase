@@ -1,3 +1,5 @@
+import glob
+import os
 from setuptools import find_packages, setup
 
 package_name = 'mobilerobo'
@@ -10,9 +12,9 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/' + f for f in __import__('os').listdir('launch')]),
-        ('share/' + package_name + '/config', ['config/' + f for f in __import__('os').listdir('config')]),
-        ('share/' + package_name + '/worlds', ['worlds/' + f for f in __import__('os').listdir('worlds')]),
+        ('share/' + package_name + '/launch', glob.glob('launch/*') if os.path.isdir('launch') else []),
+        ('share/' + package_name + '/config', glob.glob('config/*') if os.path.isdir('config') else []),
+        ('share/' + package_name + '/worlds', glob.glob('worlds/*') if os.path.isdir('worlds') else []),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

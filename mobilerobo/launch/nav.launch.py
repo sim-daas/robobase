@@ -47,7 +47,7 @@ def generate_launch_description():
     # Set GZ_RESOURCE_PATH to include models directory
     set_env_vars_resources = AppendEnvironmentVariable(
         'GZ_SIM_RESOURCE_PATH',
-        os.path.join(pkg_share, 'models')
+        os.path.join(robot_discription_directory, 'models')
     )
 
     # Launch GZ Sim server with world
