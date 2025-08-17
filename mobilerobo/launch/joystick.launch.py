@@ -18,7 +18,7 @@ def generate_launch_description():
                 'scale_angular': {'yaw': 0.5},
                 'scale_linear_turbo': {'x': 1.0},
                 'scale_angular_turbo': {'x': 0.5},
-                'use_stamped_vel': True,
+                'publish_stamped_twist': True,
                 'enable_button': 10,
                 'enable_turbo_button': 9
             }]

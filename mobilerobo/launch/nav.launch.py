@@ -17,6 +17,7 @@ def generate_launch_description():
     controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     slam_config = os.path.join(pkg_share, 'config', 'slam-config.yaml')
     ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
+    twist_mux_config = os.path.join(pkg_share, 'config', 'twist_mux.yaml')
     # Path to the URDF xacro file
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
     urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
@@ -141,6 +142,25 @@ def generate_launch_description():
         arguments=['/odometry/filtered', '/odom']
     )
 
+    # TwistMux node
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        name='twist_mux',
+        parameters=[twist_mux_config, {"use_sim_time": True}],
+        remappings=[('/cmd_vel_out', '/diff_drive_controller/cmd_vel')],
+    )
+
+    # Include joystick.launch.py
+    joystick_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_share, 'launch', 'joystick.launch.py')
+        ),
+        launch_arguments={
+            'use_sim_time': LaunchConfiguration('use_sim_time')
+        }.items()
+    )
+
     
     return LaunchDescription([
         use_sim_time,
@@ -159,7 +179,9 @@ def generate_launch_description():
             )
         ),
         odom_relay_node,
-       # slam_toolbox_node,
+        slam_toolbox_node,
         rviz_node,
         bridge_cmd,
+        twist_mux,
+        joystick_launch,
     ])
