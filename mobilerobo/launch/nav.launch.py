@@ -15,6 +15,8 @@ def generate_launch_description():
     pkg_share = FindPackageShare(package='mobilerobo').find('mobilerobo')
     robot_discription_directory = get_package_share_directory('robobase_description')
     controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
+    slam_config = os.path.join(pkg_share, 'config', 'slam-config.yaml')
+    ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
     # Path to the URDF xacro file
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
     urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
@@ -76,7 +78,7 @@ def generate_launch_description():
     )
 
     # ROS-GZ Bridge
-    gz_bridge_config = os.path.join(pkg_share, 'config', 'gz-sim-bridge.yaml')
+    gz_bridge_config = os.path.join(pkg_share, 'config', 'gz-bridge.yaml')
     bridge_cmd = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
@@ -98,6 +100,15 @@ def generate_launch_description():
         }.items()
     )
 
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[ekf_config_path, {'use_sim_time': LaunchConfiguration('use_sim_time')}]
+    )
+
+
     joint_state_broadcaster_spawner = Node(
         package='controller_manager',
         executable='spawner',
@@ -111,7 +122,26 @@ def generate_launch_description():
         arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
     )
 
+    slam_toolbox_node = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py')
+        ]),
+        launch_arguments={
+            'use_sim_time': LaunchConfiguration('use_sim_time'),
+            'slam_params_file': slam_config
+        }.items()
+    )
 
+    odom_relay_node = Node(
+        package='topic_tools',
+        executable='relay',
+        name='odom_relay',
+        output='screen',
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        arguments=['/odometry/filtered', '/odom']
+    )
+
+    
     return LaunchDescription([
         use_sim_time,
         x,
@@ -120,7 +150,7 @@ def generate_launch_description():
         gzserver_cmd,
         gzclient_cmd,
         robot_spawn_launch,
-        bridge_cmd,
+        robot_localization_node,
         joint_state_broadcaster_spawner,
         RegisterEventHandler(
             event_handler=OnProcessExit(
@@ -128,5 +158,8 @@ def generate_launch_description():
                 on_exit=[diff_drive_base_controller_spawner],
             )
         ),
+        odom_relay_node,
+        slam_toolbox_node,
         rviz_node,
+        bridge_cmd,
     ])
