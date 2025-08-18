@@ -52,6 +52,3 @@ RUN mkdir -p /root/robows/src && \
 
 # Set working directory
 WORKDIR /root/
-
-# Default command: start a shell
-CMD ["/bin/bash"]
