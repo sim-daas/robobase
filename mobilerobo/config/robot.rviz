@@ -11,6 +11,7 @@ Panels:
         - /Camera1
         - /LaserScan1
         - /Map1
+        - /Map1/Update Topic1
       Splitter Ratio: 0.5
     Tree Height: 307
   - Class: rviz_common/Selection
@@ -196,7 +197,7 @@ Visualization Manager:
       Binary representation: false
       Binary threshold: 100
       Class: rviz_default_plugins/Map
-      Color Scheme: map
+      Color Scheme: costmap
       Draw Behind: false
       Enabled: true
       Name: Map
@@ -209,9 +210,9 @@ Visualization Manager:
         Value: /map
       Update Topic:
         Depth: 5
-        Durability Policy: Volatile
+        Durability Policy: Transient Local
         History Policy: Keep Last
-        Reliability Policy: Reliable
+        Reliability Policy: Best Effort
         Value: /map_updates
       Use Timestamp: false
       Value: true
@@ -261,25 +262,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 14.394966125488281
+      Distance: 20.22389030456543
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.26938942074775696
-        Y: 0.6280597448348999
-        Z: 0.8445915579795837
+        X: 0.3293507397174835
+        Y: 2.5198562145233154
+        Z: 0.7246174216270447
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7047971487045288
+      Pitch: 0.634797215461731
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.022252578288316727
+      Yaw: 5.80543851852417
     Saved: ~
 Window Geometry:
   Camera:
