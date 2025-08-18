@@ -17,12 +17,13 @@ def generate_launch_description():
     controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     slam_config = os.path.join(pkg_share, 'config', 'slam-config.yaml')
     ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
+    twist_mux_config = os.path.join(pkg_share, 'config', 'twist_mux.yaml')
     # Path to the URDF xacro file
     urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
     urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
 
     # World file path
-    world_file = os.path.join(pkg_share, 'worlds', 'empty.sdf')
+    world_file = os.path.join(pkg_share, 'worlds', 'house.world')
     
     # Declare launch arguments
     use_sim_time = DeclareLaunchArgument(
@@ -39,14 +40,14 @@ def generate_launch_description():
     
     y = DeclareLaunchArgument(
         'y',
-        default_value='0.0',
+        default_value='-5.0',
         description='Y position of the robot in the world'
     )
    
     # Set GZ_RESOURCE_PATH to include models directory
     set_env_vars_resources = AppendEnvironmentVariable(
         'GZ_SIM_RESOURCE_PATH',
-        os.path.join(pkg_share, 'models')
+        os.path.join(robot_discription_directory, 'models')
     )
 
     # Launch GZ Sim server with world
@@ -141,6 +142,25 @@ def generate_launch_description():
         arguments=['/odometry/filtered', '/odom']
     )
 
+    # TwistMux node
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        name='twist_mux',
+        parameters=[twist_mux_config, {"use_sim_time": True}],
+        remappings=[('/cmd_vel_out', '/diff_drive_controller/cmd_vel')],
+    )
+
+    # Include joystick.launch.py
+    joystick_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_share, 'launch', 'joystick.launch.py')
+        ),
+        launch_arguments={
+            'use_sim_time': LaunchConfiguration('use_sim_time')
+        }.items()
+    )
+
     
     return LaunchDescription([
         use_sim_time,
@@ -162,4 +182,6 @@ def generate_launch_description():
         slam_toolbox_node,
         rviz_node,
         bridge_cmd,
+        twist_mux,
+        joystick_launch,
     ])

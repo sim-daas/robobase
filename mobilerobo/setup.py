@@ -15,6 +15,7 @@ setup(
         ('share/' + package_name + '/launch', glob.glob('launch/*') if os.path.isdir('launch') else []),
         ('share/' + package_name + '/config', glob.glob('config/*') if os.path.isdir('config') else []),
         ('share/' + package_name + '/worlds', glob.glob('worlds/*') if os.path.isdir('worlds') else []),
+        ('share/' + package_name + '/maps', glob.glob('maps/*') if os.path.isdir('maps') else []),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

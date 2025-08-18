@@ -123,16 +123,6 @@ def generate_launch_description():
         arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
     )
 
-    slam_toolbox_node = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            os.path.join(get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py')
-        ]),
-        launch_arguments={
-            'use_sim_time': LaunchConfiguration('use_sim_time'),
-            'slam_params_file': slam_config
-        }.items()
-    )
-
     odom_relay_node = Node(
         package='topic_tools',
         executable='relay',
@@ -140,6 +130,13 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
         arguments=['/odometry/filtered', '/odom']
+    )
+
+    # start the nav2 nodes
+    navigation_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_share, 'launch', 'navigation.launch.py')
+        ),
     )
 
     # TwistMux node
@@ -179,7 +176,7 @@ def generate_launch_description():
             )
         ),
         odom_relay_node,
-        slam_toolbox_node,
+        navigation_launch,
         rviz_node,
         bridge_cmd,
         twist_mux,
