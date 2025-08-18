@@ -176,7 +176,7 @@ def generate_launch_description():
             )
         ),
         odom_relay_node,
-        navigation_launch,
+        #navigation_launch,
         rviz_node,
         bridge_cmd,
         twist_mux,
