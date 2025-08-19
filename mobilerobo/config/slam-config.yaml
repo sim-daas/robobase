@@ -16,14 +16,14 @@ slam_toolbox:
 
     # PERFORMANCE & ACCURACY
     # Defines when to process a new scan. Set to 0.0 to process every scan.
-    minimum_travel_distance: 0.05  # meters
-    minimum_travel_heading: 0.017  # radians (~10 degrees)
+    minimum_travel_distance: 0.001  # meters
+    minimum_travel_heading: 0.001  # radians
 
     # MAP GENERATION
     # Resolution of the map in meters/pixel. Smaller values mean higher resolution.
-    resolution: 0.02
+    resolution: 0.01  # meters
     # The frequency at which the map is updated and published.
-    map_update_interval: 1.0 # seconds
+    map_update_interval: 0.2 # seconds
 
     # SCAN MATCHER (How scans are aligned)
     # The maximum usable range of the laser. Values further than this are ignored.
