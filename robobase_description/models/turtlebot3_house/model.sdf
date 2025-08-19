@@ -5377,7 +5377,7 @@
       </link>
       <pose frame=''>-7.18363 1.24799 0 0 0 -1.5708</pose>
     </model>
-    <model name='cafe_table'>
+<!--     <model name='cafe_table'>
       <static>1</static>
       <link name='link'>
         <collision name='surface'>
@@ -5450,7 +5450,7 @@
         </visual>
       </link>
       <pose frame=''>6.35903 -2.27759 0 0 -0 0</pose>
-    </model>
+    </model> -->
     <model name='first_2015_trash_can'>
       <link name='link'>
         <inertial>
