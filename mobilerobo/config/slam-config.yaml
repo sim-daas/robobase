@@ -6,9 +6,9 @@ slam_toolbox:
     base_frame: base_footprint
     scan_topic: /scan
 
-    map_file_name: "/root/robows/src/robobase/mobilerobo/maps/house_graph"
-    use_prior_map: true
-    map_start_pose: [0.0, 0.0, 0.0]
+    # map_file_name: "/root/robows/src/robobase/mobilerobo/maps/house_graph"
+    # use_prior_map: true
+    # map_start_pose: [0.0, 0.0, 0.0]
 
 
     # MODE: Can be 'mapping' or 'localization'.
