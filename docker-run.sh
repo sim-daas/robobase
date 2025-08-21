@@ -29,6 +29,7 @@ docker run -v "${HOST_REPO_PATH}:${CONTAINER_REPO_PATH}" \
     -it \
     --privileged \
     --net=host \
+    --ipc=host \
     -v /dev/shm:/dev/shm \
     -v "${XSOCK}:${XSOCK}" \
     -v /dev/dri:/dev/dri \
