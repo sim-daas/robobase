@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Set image name (change if needed)
-IMAGE="robobase:v1"
-CONTAINER_NAME="robobase_dev"
+# Set image name and container name from arguments or use defaults
+IMAGE="${1:-robobase:v1}"
+CONTAINER_NAME="${2:-robobase_dev}"
 
-# Use first argument as host repo path, or default to current directory
-HOST_REPO_PATH="${1:-$(pwd)}"
+# Use third argument as host repo path, or default to current directory
+HOST_REPO_PATH="${3:-$(pwd)}"
 CONTAINER_REPO_PATH="/root/robows/src/robobase"
 
 # Shift to allow passing extra -v options as further arguments
-shift || true
+shift 3 || true
 
 # X11 and user environment (host must provide XAUTH/XAUTHORITY)
 XSOCK="/tmp/.X11-unix"
