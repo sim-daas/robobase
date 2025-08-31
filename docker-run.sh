@@ -11,6 +11,24 @@ CONTAINER_REPO_PATH="/root/robows/src/robobase"
 # Shift to allow passing extra -v options as further arguments
 shift 3 || true
 
+# Check if container already exists
+if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+    echo "Container ${CONTAINER_NAME} already exists."
+    
+    # Check if container is running
+    if docker ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+        echo "Container is running. Executing into it..."
+        docker exec -it "${CONTAINER_NAME}" bash
+    else
+        echo "Container is stopped. Starting and executing into it..."
+        docker start "${CONTAINER_NAME}"
+        docker exec -it "${CONTAINER_NAME}" bash
+    fi
+    exit 0
+fi
+
+echo "Creating new container ${CONTAINER_NAME}..."
+
 # X11 and user environment (host must provide XAUTH/XAUTHORITY)
 XSOCK="/tmp/.X11-unix"
 XAUTH="${XAUTHORITY:-$HOME/.Xauthority}"
