@@ -36,6 +36,7 @@ docker run -v "${HOST_REPO_PATH}:${CONTAINER_REPO_PATH}" \
     -e DISPLAY="${DISPLAY}" \
     -e QT_X11_NO_MITSHM=1 \
     -e XAUTHORITY="${XAUTH}" \
+    -u $(id -u):$(id -g)
     -v "${XAUTH}:${XAUTH}" \
     --name "${CONTAINER_NAME}" \
     ${GPU_OPTS} \
