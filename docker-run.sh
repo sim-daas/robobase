@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set image name and container name from arguments or use defaults
-IMAGE="${1:-robobase:v1}"
-CONTAINER_NAME="${2:-robobase_dev}"
+IMAGE="${1:-robobase:humble}"
+CONTAINER_NAME="${2:-humble_dev}"
 
 # Use third argument as host repo path, or default to current directory
 HOST_REPO_PATH="${3:-$(pwd)}"
@@ -36,7 +36,7 @@ docker run -v "${HOST_REPO_PATH}:${CONTAINER_REPO_PATH}" \
     -e DISPLAY="${DISPLAY}" \
     -e QT_X11_NO_MITSHM=1 \
     -e XAUTHORITY="${XAUTH}" \
-    -u $(id -u):$(id -g)
+    -u $(id -u):$(id -g) \
     -v "${XAUTH}:${XAUTH}" \
     --name "${CONTAINER_NAME}" \
     ${GPU_OPTS} \
