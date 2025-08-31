@@ -1,4 +1,4 @@
-FROM osrf/ros:humble-desktop
+FROM osrf/ros:humble-desktop-full-jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -30,21 +30,10 @@ RUN apt-get update && apt-get install -y \
     ros-humble-joint-state-publisher-gui \
     ros-humble-ros2-control \
     ros-humble-ros2-controllers \
-    ros-humble-robot-localization \
-    lsb-release \
-    gnupg \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Ignition Fortress (Gazebo)
-RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" > /etc/apt/sources.list.d/gazebo-stable.list && \
-    apt-get update && \
-    apt-get install -y ignition-fortress && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install ROS-Gazebo integration packages
-RUN apt-get update && apt-get install -y \
+    ros-humble-gz-ros2-control \
+    ros-humble-gz-ros2-control-demos \
     ros-humble-ros-gz \
+    ros-humble-robot-localization \
     ros-humble-ros-gz-bridge \
     ros-humble-ign-ros2-control \
     && rm -rf /var/lib/apt/lists/*
