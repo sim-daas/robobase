@@ -52,7 +52,7 @@ RUN apt-get update && apt-get install -y \
 RUN gem install tmuxinator
 
 # Install CPU-only computer vision libraries for fallback
-RUN pip3 install opencv-python-headless ultralytics
+#RUN pip3 install opencv-python-headless ultralytics
 
 # Create ROS 2 workspace and clone robobase package
 RUN mkdir -p /root/robows/src && \
