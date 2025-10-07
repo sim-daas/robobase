@@ -46,7 +46,28 @@ RUN apt-get update && apt-get install -y \
     ros-humble-ros-gz \
     ros-humble-ros-gz-bridge \
     ros-humble-ign-ros2-control \
+    ros-humble-teleop-twist-keyboard \
+    ros-humble-robot-state-publisher \
+    ros-humble-joint-state-publisher \
+    ros-humble-topic-tools \
+    ros-humble-xacro \
+    ros-humble-tf-transformations \
+    ros-humble-joint-state-broadcaster \
+    ros-humble-joint-trajectory-controller \
+    ros-humble-controller-manager \
+    ros-humble-gazebo-msgs \
+    ros-dev-tools \
     && rm -rf /var/lib/apt/lists/*
+
+# Install required Python libraries
+RUN pip3 --break-system-packages install \
+    python-fcl \
+    urdf-parser-py \
+    networkx==3.4.2 \
+    transforms3d \
+    opencv-contrib-python==4.7.0.72 \
+    numpy==1.21.5 \
+    trimesh
 
 # Install tmuxinator gem
 RUN gem install tmuxinator
