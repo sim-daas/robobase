@@ -1,11 +1,11 @@
 amcl:
   ros__parameters:
     use_sim_time: True
-    alpha1: 0.2
-    alpha2: 0.2
-    alpha3: 0.2
-    alpha4: 0.2
-    alpha5: 0.2
+    alpha1: 0.15  # Reduced from 0.2 for better rotational noise model
+    alpha2: 0.15  # Reduced from 0.2 for better translational noise model
+    alpha3: 0.15  # Reduced from 0.2 for better translational noise model  
+    alpha4: 0.15  # Reduced from 0.2 for better rotational noise model
+    alpha5: 0.15  # Reduced from 0.2 for better translational noise model
     base_frame_id: "base_footprint"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
@@ -16,25 +16,25 @@ amcl:
     laser_likelihood_max_dist: 2.0
     laser_max_range: 8.0
     laser_min_range: -1.0
-    max_beams: 60
-    max_particles: 2000
-    min_particles: 500
+    max_beams: 120  # Increased from 60 for better localization accuracy
+    max_particles: 3000  # Increased from 2000 for better tracking
+    min_particles: 800  # Increased from 500 for more stable localization
     odom_frame_id: "odom"
-    pf_err: 0.05
+    pf_err: 0.03  # Reduced from 0.05 for better convergence
     pf_z: 0.99
-    recovery_alpha_fast: 0.0
-    recovery_alpha_slow: 0.0
+    recovery_alpha_fast: 0.1  # Increased from 0.0 to enable recovery
+    recovery_alpha_slow: 0.001  # Increased from 0.0 to enable recovery
     resample_interval: 1
     robot_model_type: "nav2_amcl::DifferentialMotionModel"
     save_pose_rate: 0.5
-    sigma_hit: 0.2
+    sigma_hit: 0.15  # Reduced from 0.2 for better sensor model
     tf_broadcast: True
-    transform_tolerance: 1.0
-    update_min_a: 0.2
-    update_min_d: 0.25
-    z_hit: 0.5
+    transform_tolerance: 0.5  # Reduced from 1.0 for tighter synchronization
+    update_min_a: 0.15  # Reduced from 0.2 for more frequent updates
+    update_min_d: 0.2  # Reduced from 0.25 for more frequent updates
+    z_hit: 0.7  # Increased from 0.5 for better sensor model
     z_max: 0.05
-    z_rand: 0.5
+    z_rand: 0.2  # Reduced from 0.5 for better sensor model
     z_short: 0.05
     scan_topic: "/scan"
     set_initial_pose: True
@@ -50,7 +50,7 @@ bt_navigator:
     robot_base_frame: base_footprint
     odom_topic: /odometry/filtered
     bt_loop_duration: 10
-    default_server_timeout: 20
+    default_server_timeout: 30  # Increased from 20 for more patience
     wait_for_service_timeout: 1000
     action_server_result_timeout: 900.0
     navigators: ["navigate_to_pose"]
@@ -77,29 +77,29 @@ bt_navigator:
 controller_server:
   ros__parameters:
     use_sim_time: True
-    controller_frequency: 20.0
+    controller_frequency: 30.0  # Increased from 20Hz for smoother control
     enable_stamped_cmd_vel: true
     min_x_velocity: 0.0
     min_y_velocity: 0.0
     min_theta_velocity: 0.0
-    max_x_velocity: 0.6
+    max_x_velocity: 1.0  # Increased from 0.6 for faster navigation
     max_y_velocity: 0.0
-    max_theta_velocity: 1.0
-    acc_lim_x: 2.5
+    max_theta_velocity: 1.5  # Increased from 1.0 for faster turning
+    acc_lim_x: 2.0  # Slightly reduced from 2.5 for smoother acceleration
     acc_lim_y: 0.0
-    acc_lim_theta: 3.2
-    decel_lim_x: -2.5
+    acc_lim_theta: 2.5  # Reduced from 3.2 for smoother angular motion
+    decel_lim_x: -2.0  # Slightly reduced for smoother deceleration
     decel_lim_y: 0.0
-    decel_lim_theta: -3.2
-    vx_samples: 20
+    decel_lim_theta: -2.5
+    vx_samples: 25  # Increased from 20 for better trajectory sampling
     vy_samples: 5
-    vtheta_samples: 20
-    sim_time: 1.7
-    linear_granularity: 0.05
-    angular_granularity: 0.025
-    transform_tolerance: 0.2
-    xy_goal_tolerance: 0.25
-    yaw_goal_tolerance: 0.25
+    vtheta_samples: 25  # Increased from 20 for better angular sampling
+    sim_time: 2.0  # Increased from 1.7 for better lookahead
+    linear_granularity: 0.025  # Reduced from 0.05 for finer control
+    angular_granularity: 0.015  # Reduced from 0.025 for smoother turning
+    transform_tolerance: 0.15  # Reduced from 0.2 for better precision
+    xy_goal_tolerance: 0.15  # Reduced from 0.25 for more precise goal reaching
+    yaw_goal_tolerance: 0.15  # Reduced from 0.25 for better orientation accuracy
     critics: ["GoalDist", "PathDist", "ObstacleFootprint", "BaseObstacle", "GoalAlign", "PathAlign", "Twirling"]
     GoalDist.scale: 24.0
     PathDist.scale: 32.0
@@ -114,21 +114,21 @@ controller_server:
       debug_trajectory_details: True
       min_vel_x: 0.0
       min_vel_y: 0.0
-      max_vel_x: 0.6
+      max_vel_x: 1.0  # Updated to match controller_server
       max_vel_y: 0.0
-      max_vel_theta: 1.0
+      max_vel_theta: 1.5  # Updated to match controller_server
       min_speed_xy: 0.0
-      max_speed_xy: 0.6
+      max_speed_xy: 1.0  # Updated to match controller_server
       min_speed_theta: 0.0
-      acc_lim_x: 2.5
+      acc_lim_x: 2.0  # Updated to match controller_server
       acc_lim_y: 0.0
-      acc_lim_theta: 3.2
-      decel_lim_x: -2.5
+      acc_lim_theta: 2.5  # Updated to match controller_server
+      decel_lim_x: -2.0  # Updated to match controller_server
       decel_lim_y: 0.0
-      decel_lim_theta: -3.2
-      yaw_goal_tolerance: 0.25
-      xy_goal_tolerance: 0.25
-      transform_tolerance: 0.2
+      decel_lim_theta: -2.5  # Updated to match controller_server
+      yaw_goal_tolerance: 0.15  # Updated to match controller_server
+      xy_goal_tolerance: 0.15  # Updated to match controller_server
+      transform_tolerance: 0.15  # Updated to match controller_server
       critics: ["GoalDist", "PathDist", "ObstacleFootprint", "BaseObstacle", "GoalAlign", "PathAlign", "Twirling"]
       GoalDist.scale: 24.0
       PathDist.scale: 32.0
@@ -145,8 +145,8 @@ planner_server:
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_navfn_planner::NavfnPlanner"
-      tolerance: 0.5
-      use_astar: false
+      tolerance: 0.3  # Reduced from 0.5 for more precise global planning
+      use_astar: true  # Changed from false for better path optimization
       allow_unknown: true
 
 recoveries_server:
@@ -154,14 +154,20 @@ recoveries_server:
     use_sim_time: True
     costmap_topic: local_costmap/costmap_raw
     footprint_topic: local_costmap/published_footprint
-    cycle_frequency: 10.0
+    cycle_frequency: 15.0  # Increased from 10.0 for more responsive recovery
     recovery_plugins: ["spin", "backup", "wait"]
     spin:
       plugin: "nav2_recoveries/Spin"
+      max_rotational_vel: 1.2  # Added for controlled spinning
+      min_rotational_vel: 0.3  # Added for controlled spinning
+      rotational_acc_lim: 2.0  # Added for smooth acceleration
     backup:
       plugin: "nav2_recoveries/BackUp"
+      backup_dist: 0.25  # Added for controlled backup distance
+      backup_speed: 0.15  # Added for controlled backup speed
     wait:
       plugin: "nav2_recoveries/Wait"
+      wait_duration: 3.0  # Added explicit wait duration
 
 global_costmap:
   global_costmap:
@@ -169,7 +175,7 @@ global_costmap:
       use_sim_time: True
       global_frame: map
       robot_base_frame: base_footprint
-      update_frequency: 1.0
+      update_frequency: 2.0  # Increased from 1.0 for more responsive updates
       publish_frequency: 1.0
       resolution: 0.05
       track_unknown_space: true
@@ -187,10 +193,14 @@ global_costmap:
           clearing: True
           marking: True
           data_type: "LaserScan"
+          raytrace_max_range: 3.0  # Added for better clearing
+          raytrace_min_range: 0.0  # Added for better clearing
+          obstacle_max_range: 2.5  # Added for obstacle detection range
+          obstacle_min_range: 0.0  # Added for obstacle detection range
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.3
+        cost_scaling_factor: 2.5  # Reduced from 3.0 for less aggressive inflation
+        inflation_radius: 0.4  # Increased from 0.3 for safer navigation
       always_send_full_costmap: True
 
 local_costmap:
@@ -199,14 +209,14 @@ local_costmap:
       use_sim_time: True
       global_frame: odom
       robot_base_frame: base_footprint
-      update_frequency: 5.0
-      publish_frequency: 2.0
+      update_frequency: 10.0  # Increased from 5.0 for more responsive local planning
+      publish_frequency: 5.0  # Increased from 2.0 for better visualization
       resolution: 0.05
       rolling_window: true
-      width: 3
-      height: 3
-      origin_x: -1.5
-      origin_y: -1.5
+      width: 4  # Increased from 3 for better lookahead
+      height: 4  # Increased from 3 for better lookahead
+      origin_x: -2.0  # Adjusted for new width
+      origin_y: -2.0  # Adjusted for new height
       plugins: ["obstacle_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
@@ -218,10 +228,14 @@ local_costmap:
           clearing: True
           marking: True
           data_type: "LaserScan"
+          raytrace_max_range: 3.0  # Added for better clearing
+          raytrace_min_range: 0.0  # Added for better clearing
+          obstacle_max_range: 2.5  # Added for obstacle detection range
+          obstacle_min_range: 0.0  # Added for obstacle detection range
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.3
+        cost_scaling_factor: 2.5  # Reduced from 3.0 for less aggressive inflation
+        inflation_radius: 0.4  # Increased from 0.3 for safer navigation
       always_send_full_costmap: True
   local_costmap_client:
     ros__parameters:
@@ -233,7 +247,7 @@ local_costmap:
 map_server:
   ros__parameters:
     use_sim_time: True
-    yaml_filename: "/root/robows/src/robobase/mobilerobo/maps/house_map.yaml" # IMPORTANT: Change this to your map file
+    # yaml_filename should be set via launch parameter, not hardcoded here
 
 lifecycle_manager:
   ros__parameters:
