@@ -59,7 +59,7 @@ bt_navigator:
     # navigate_through_poses:
     #   plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator"
     # default_nav_through_poses_bt_xml: "/opt/ros/jazzy/share/nav2_bt_navigator/behavior_trees/navigate_through_poses.xml"
-    default_nav_to_pose_bt_xml: "/root/robows/src/robobase/mobilerobo/config/navigate_to_pose.xml"
+    # default_nav_to_pose_bt_xml: "/opt/ros/jazzy/share/nav2_bt_navigator/behavior_trees/navigate_to_pose.xml"
 
     # 'default_nav_through_poses_bt_xml' and 'default_nav_to_pose_bt_xml' are use defaults:
     # nav2_bt_navigator/navigate_to_pose_w_replanning_and_recovery.xml
@@ -91,9 +91,9 @@ controller_server:
     decel_lim_x: -2.5
     decel_lim_y: 0.0
     decel_lim_theta: -3.2
-    vx_samples: 40
-    vy_samples: 1
-    vtheta_samples: 40
+    vx_samples: 20
+    vy_samples: 5
+    vtheta_samples: 20
     sim_time: 1.7
     linear_granularity: 0.05
     angular_granularity: 0.025
@@ -149,24 +149,19 @@ planner_server:
       use_astar: false
       allow_unknown: true
 
-behavior_server:
+recoveries_server:
   ros__parameters:
     use_sim_time: True
-    update_rate: 10.0
     costmap_topic: local_costmap/costmap_raw
     footprint_topic: local_costmap/published_footprint
-    behavior_plugins: ["spin", "backup", "wait"]
+    cycle_frequency: 10.0
+    recovery_plugins: ["spin", "backup", "wait"]
     spin:
-      plugin: "nav2_behaviors::Spin"
+      plugin: "nav2_recoveries/Spin"
     backup:
-      plugin: "nav2_behaviors::BackUp"
+      plugin: "nav2_recoveries/BackUp"
     wait:
-      plugin: "nav2_behaviors::Wait"
-    transform_tolerance: 0.1
-    max_rotational_vel: 1.0
-    min_rotational_vel: 0.4
-    rotational_accel: 3.2
-
+      plugin: "nav2_recoveries/Wait"
 
 global_costmap:
   global_costmap:
@@ -177,7 +172,6 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       resolution: 0.05
-      footprint: "[[-0.1, -0.22], [-0.1, 0.22], [0.5, 0.22], [0.5, -0.22]]"
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       static_layer:
@@ -195,8 +189,8 @@ global_costmap:
           data_type: "LaserScan"
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 2.5
-        inflation_radius: 0.4
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.3
       always_send_full_costmap: True
 
 local_costmap:
@@ -208,7 +202,6 @@ local_costmap:
       update_frequency: 5.0
       publish_frequency: 2.0
       resolution: 0.05
-      footprint: "[[-0.1, -0.22], [-0.1, 0.22], [0.5, 0.22], [0.5, -0.22]]"
       rolling_window: true
       width: 3
       height: 3
@@ -227,8 +220,8 @@ local_costmap:
           data_type: "LaserScan"
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 2.5
-        inflation_radius: 0.1
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.3
       always_send_full_costmap: True
   local_costmap_client:
     ros__parameters:

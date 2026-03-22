@@ -28,6 +28,10 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-nav2-util \
     ros-jazzy-nav2-rviz-plugins \
     ros-jazzy-joint-state-publisher-gui \
+    ros-jazzy-gz-ros2-control ros-jazzy-gz-ros2-control-demos \
+    ros-jazzy-topic-tools \
+    ros-jazzy-ros-gz ros-jazzy-gz-plugin-vendor ros-jazzy-gz-sim-vendor \
+    ros-jazzy-twist-mux \
     && rm -rf /var/lib/apt/lists/*
 
 # Install tmuxinator gem
