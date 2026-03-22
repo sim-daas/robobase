@@ -42,6 +42,7 @@ def generate_launch_description():
         'amcl',
         'controller_server',
         'planner_server',
+        'behavior_server',
         'bt_navigator'
     ]
 
@@ -88,6 +89,14 @@ def generate_launch_description():
         parameters=[params_file]
     )
 
+    behavior_server_node = Node(
+        package='nav2_behaviors',
+        executable='behavior_server',
+        name='behavior_server',
+        output='screen',
+        parameters=[params_file]
+    )
+
     # --- Lifecycle Manager to bring them all up ---
 
     lifecycle_manager_node = Node(
@@ -110,6 +119,7 @@ def generate_launch_description():
         amcl_node,
         controller_server_node,
         planner_server_node,
+        behavior_server_node,
         bt_navigator_node,
         lifecycle_manager_node
     ])

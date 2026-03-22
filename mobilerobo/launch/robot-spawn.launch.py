@@ -12,7 +12,7 @@ def generate_launch_description():
     # Get package directories
     pkg_share = FindPackageShare('mobilerobo').find('mobilerobo')
     robot_description_dir = get_package_share_directory('robobase_description')
-    urdf_xacro = os.path.join(robot_description_dir, 'models', 'robo.urdf.xacro')
+    urdf_xacro = os.path.join(robot_description_dir, 'models', 'mini-robo.urdf.xacro')
     urdf_tmp = '/tmp/robot.urdf'
     sdf_tmp = '/tmp/robot.sdf'
 

@@ -16,8 +16,8 @@ def generate_launch_description():
     robot_discription_directory = get_package_share_directory('robobase_description')
     controller_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     # Path to the URDF xacro file
-    urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
-    urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
+    urdf_file = os.path.join(robot_discription_directory, 'models', 'mini-robo.urdf.xacro')
+    urdf_xacro = os.path.join(robot_discription_directory, 'models', 'mini-robo.urdf.xacro')
 
     # World file path
     world_file = os.path.join(pkg_share, 'worlds', 'empty.sdf')

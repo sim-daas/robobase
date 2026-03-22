@@ -19,8 +19,8 @@ def generate_launch_description():
     ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
     twist_mux_config = os.path.join(pkg_share, 'config', 'twist_mux.yaml')
     # Path to the URDF xacro file
-    urdf_file = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
-    urdf_xacro = os.path.join(robot_discription_directory, 'models', 'robo.urdf.xacro')
+    urdf_file = os.path.join(robot_discription_directory, 'models', 'mini-robo.urdf.xacro')
+    urdf_xacro = os.path.join(robot_discription_directory, 'models', 'mini-robo.urdf.xacro')
 
     # World file path
     world_file = os.path.join(pkg_share, 'worlds', 'house.world')
