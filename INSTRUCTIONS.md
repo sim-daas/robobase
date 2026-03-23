@@ -24,7 +24,7 @@ To build a map of the new supermarket environment, we will use Cartographer as t
 
 2. In a new terminal, launch the Cartographer mapping node:
    ```bash
-   ros2 launch mobilerobo cartographer.launch.py use_sim_time:=true
+   ros2 launch mobilerobo slam.launch.py use_sim_time:=true
    ```
 
 3. Drive the robot around the custom gaps and racks using teleop to generate the map:
@@ -68,5 +68,5 @@ Once the map is saved, configure Nav2 to use it and run the custom auto-navigati
    *The robot will automatically navigate from its start position, stop at a rack, wait 5 seconds, and return to the start.*
 
 ## 3. Future Testing & Algorithm Comparison
-While Cartographer provides a robust mapping solution, the `slam_toolbox` mapping package (available in `slam.launch.py`) will also be tested in the future to fulfill comparison requirements. 
+While slam_toolbox provides a robust mapping solution, the `cartographer` mapping package (available in `cartographer.launch.py`) will also be tested in the future to fulfill comparison requirements. 
 By comparing maps generated from both techniques, we can measure and showcase system robustness against minor environmental changes (e.g., placing obstacles in entrances).
