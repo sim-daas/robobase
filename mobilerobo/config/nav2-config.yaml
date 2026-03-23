@@ -99,7 +99,7 @@ controller_server:
     angular_granularity: 0.025
     transform_tolerance: 0.2
     xy_goal_tolerance: 0.25
-    yaw_goal_tolerance: 0.7
+    yaw_goal_tolerance: 2.7
     critics: ["GoalDist", "PathDist", "ObstacleFootprint", "BaseObstacle", "GoalAlign", "PathAlign", "Twirling"]
     GoalDist.scale: 24.0
     PathDist.scale: 32.0

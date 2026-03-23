@@ -15,12 +15,15 @@ To build a map of the new supermarket environment, we will use Cartographer as t
    ros2 launch mobilerobo cartographer.launch.py use_sim_time:=true
    ```
 
-3. Drive the robot around the custom gaps and racks using teleop to generate the map.
+3. Drive the robot around the custom gaps and racks using teleop to generate the map:
+   ```bash
+   ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --param stamped:=true --remap cmd_vel:=/diff_drive_controller/cmd_vel
+   ```
 
 4. **Saving the map**:
    Once the map looks good in RViz, save it:
    ```bash
-   ros2 run nav2_map_server map_saver_cli -f ~/githubrepos/robobase/mobilerobo/maps/supermarket_map
+   ros2 run nav2_map_server map_saver_cli -f /root/robows/src/robobase/mobilerobo/maps/supermarket_map
    ```
    *(This will create `supermarket_map.yaml` and `supermarket_map.pgm`)*
 
