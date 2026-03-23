@@ -2,6 +2,18 @@
 
 Here are the commands and steps to perform the assignment tasks using the custom `supermarket.world`.
 
+## 0. Environment Setup (Docker)
+Before running the ROS2 commands, ensure your Docker environment is running:
+
+```bash
+git clone https://github.com/sim-daas/robobase
+cd robobase
+xhost +
+./docker-run.sh
+```
+
+*Once inside the container, you can proceed with the remaining steps.*
+
 ## 1. Mapping Simulation (Building the Map)
 To build a map of the new supermarket environment, we will use Cartographer as the primary mapping tool.
 

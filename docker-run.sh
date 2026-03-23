@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set image name and container name from arguments or use defaults
-IMAGE="${1:-robobase:final}"
-CONTAINER_NAME="${2:-finaltest}"
+IMAGE="${1:-kamleshvkumarsingh/robobase:latest}"
+CONTAINER_NAME="${2:-robosim}"
 
 # Use third argument as host repo path, or default to current directory
 HOST_REPO_PATH="${3:-$(pwd)}"
