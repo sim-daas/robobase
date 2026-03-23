@@ -22,10 +22,16 @@ def generate_launch_description():
     urdf_file = os.path.join(robot_discription_directory, 'models', 'mini-robo.urdf.xacro')
     urdf_xacro = os.path.join(robot_discription_directory, 'models', 'mini-robo.urdf.xacro')
 
-    # World file path
-    world_file = os.path.join(pkg_share, 'worlds', 'house.world')
-    
     # Declare launch arguments
+    world = DeclareLaunchArgument(
+        'world',
+        default_value='supermarket.world',
+        description='World file to load'
+    )
+
+    from launch.substitutions import PathJoinSubstitution
+    world_file = PathJoinSubstitution([pkg_share, 'worlds', LaunchConfiguration('world')])
+    
     use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
         default_value='true',
@@ -40,7 +46,7 @@ def generate_launch_description():
     
     y = DeclareLaunchArgument(
         'y',
-        default_value='-5.0',
+        default_value='5.0',
         description='Y position of the robot in the world'
     )
    
@@ -160,6 +166,7 @@ def generate_launch_description():
 
     
     return LaunchDescription([
+        world,
         use_sim_time,
         x,
         y,
